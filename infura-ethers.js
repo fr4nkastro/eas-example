@@ -1,6 +1,6 @@
 const ethers = require('ethers');
 
-const provider = ethers.getDefaultProvider('https://sepolia.infura.io/v3/115af45476674f7b910b65270e951035');
+const provider = ethers.getDefaultProvider('https://sepolia.infura.io/v3/your-api-token');
 
 provider.getBlockNumber()
 .then(blockNumber => {

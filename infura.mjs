@@ -1,6 +1,6 @@
 import fetch from 'node-fetch';
 
-fetch("https://sepolia.infura.io/v3/115af45476674f7b910b65270e951035", {
+fetch("https://sepolia.infura.io/v3/your-api-token", {
   method: "POST",
   headers: {
     "Content-Type": "application/json"
