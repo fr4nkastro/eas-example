@@ -30,7 +30,7 @@ async function getAttestations (){
 }
 
 function decodeDataStr(data){
-  const schemaEncoder = new SchemaEncoder("uint64 userId,uint64 equipmentId,uint32 activationDays");
+  const schemaEncoder = new SchemaEncoder("string userId,uint32 equipmentId,uint64 activationDays");
   const decodeItem= schemaEncoder.decodeData(data);
   console.log("decodeItem",decodeItem);
 
@@ -70,7 +70,38 @@ indexerObj.getSchemaAttestationUIDs(options)
   
 }
 
+function getTimeStamp(dias){
+    
+  var fechaExpiracion = new Date(); // Fecha actual
+  fechaExpiracion.setDate(fechaExpiracion.getDate() + dias); // Añadir 7 días a la fecha actual
+  console.log(fechaExpiracion);
+  // Obtener el sello de tiempo Unix en milisegundos y convertirlo a segundos
+  var timestampUnix = Math.floor(fechaExpiracion.getTime() / 1000);
+
+  console.log(timestampUnix);
+}
+function getDateTimeStamp(year, month, day, hours, minutes){
+    
+  var fechaExpiracion = new Date(Date.UTC(year, month - 1, day, hours, minutes));
+  console.log(fechaExpiracion);
+  
+  var timestampUnix = Math.floor(fechaExpiracion.getTime() / 1000);
+
+  console.log(timestampUnix);
+}
+function unixToDateTime(unix_timestamp) {
+  // Convertir el timestamp Unix a milisegundos
+  var date = new Date(unix_timestamp * 1000);
+
+  // Convertir la fecha a una cadena en formato ISO y retornarla
+   var converted =date.toISOString();
+   console.log(converted);
+}
 // getAttestations();
 // getAttestationsBySchemaId();
 
-decodeDataStr("0x00000000000000000000000000000000000000000000000000000000075bcd15000000000000000000000000000000000000000000000000000000003ade68b1000000000000000000000000000000000000000000000000000000000000016d")
+decodeDataStr("0x000000000000000000000000000000000000000000000000000000000000006000000000000000000000000000000000000000000000000000000000000010f70000000000000000000000000000000000000000000000000000000066077a54000000000000000000000000000000000000000000000000000000000000004061686676692d6461656d682d68787732742d6c34737a6a2d656a6b34722d777a6274672d636a3378322d326e34686d2d733470746a2d61617534722d6672616e")
+
+// getTimeStamp(6);
+// getDateTimeStamp(2024, 3, 30, 2, 45);
+// unixToDateTime(1711269808);
